@@ -19,7 +19,10 @@ Sistem absensi digital berbasis **RFID** menggunakan **Laravel** sebagai backend
 
 ## 📸 Tampilan Antarmuka
 
-> *(Tambahkan screenshot di sini, seperti dashboard admin, tampilan absensi umum, dll)*
+> ![WhatsApp Image 2025-06-21 at 23 13 05_6ba0381a](https://github.com/user-attachments/assets/31e22028-40dc-49e1-9a0c-8f3492827d91)
+> ![WhatsApp Image 2025-06-21 at 23 14 08_939614e0](https://github.com/user-attachments/assets/6519bd61-d555-4615-8656-e7181f52fae4)
+
+
 
 ## 🚀 Instalasi
 
