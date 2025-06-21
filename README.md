@@ -1,6 +1,4 @@
 
-
-````
 # Laravel RFID Attendance System
 
 ![License](https://img.shields.io/github/license/Yodhaardiansyah/laravel-rfid-attendance-system)
