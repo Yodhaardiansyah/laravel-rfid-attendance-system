@@ -142,14 +142,4 @@ Pull request sangat dipersilakan! Untuk perubahan besar, buka dulu issue untuk d
 
 [Yodha Ardiansyah](https://github.com/Yodhaardiansyah)
 
-```
 
----
-
-Jika kamu punya:
-- Gambar atau screenshot, tinggal tambahkan pada bagian 📸 *Tampilan Antarmuka*.
-- Endpoint API lebih lengkap, bisa ditambahkan ke bagian 📡 *API Endpoint*.
-- Link demo atau domain, bisa ditaruh di bagian atas juga.
-
-Ingin aku bantu juga buat dokumentasi multi-page (misalnya `docs/installation.md`, `docs/api.md`, dsb)?
-```
