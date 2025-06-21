@@ -5,57 +5,57 @@
 ![Laravel](https://img.shields.io/badge/Laravel-10.x-red)
 ![RFID](https://img.shields.io/badge/RFID-Enabled-green)
 
-Sistem absensi digital berbasis **RFID** menggunakan **Laravel** sebagai backend dan web interface. Proyek ini dirancang untuk digunakan di pondok pesantren, sekolah, atau institusi lain yang membutuhkan sistem presensi otomatis berbasis kartu RFID.
+A modern **RFID-based attendance system** built with **Laravel**. This project is designed for use in schools, boarding schools (pondok pesantren), companies, or any institutions that require automated presence logging with RFID cards.
 
-## 🔧 Fitur Utama
+## 🔧 Key Features
 
-- Absensi menggunakan **RFID Tag**
-- Tampilan nama dan foto pengguna saat tap
-- Dashboard admin untuk memantau dan mengelola absensi
-- Pengaturan jam masuk dan pulang
-- Riwayat absensi dan rekap harian
-- Role-based access (Admin dan Umum)
-- Integrasi ke hardware berbasis ESP8266 (WiFi)
+- Attendance using **RFID Tags**
+- Display of user name and photo upon scan
+- Admin dashboard for attendance management
+- Customizable check-in and check-out times
+- Attendance logs and daily recaps
+- Role-based access (Admin and General Users)
+- Hardware integration with ESP8266 (WiFi)
 
-## 📸 Tampilan Antarmuka
+## 📸 Interface Preview
 
-> ![WhatsApp Image 2025-06-21 at 23 13 05_6ba0381a](https://github.com/user-attachments/assets/31e22028-40dc-49e1-9a0c-8f3492827d91)
-> ![WhatsApp Image 2025-06-21 at 23 14 08_939614e0](https://github.com/user-attachments/assets/6519bd61-d555-4615-8656-e7181f52fae4)
+> ![WhatsApp Image 2025-06-21 at 23 13 05_6ba0381a](https://github.com/user-attachments/assets/aea99f18-16e1-48b8-9b5b-9cdf855240fc)
+> ![WhatsApp Image 2025-06-21 at 23 14 08_939614e0](https://github.com/user-attachments/assets/1f091d28-b3e4-437b-bd97-aed9197ceceb)
 
 
 
-## 🚀 Instalasi
+## 🚀 Installation Guide
 
-### 1. Clone Repo
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/Yodhaardiansyah/laravel-rfid-attendance-system.git
 cd laravel-rfid-attendance-system
 ````
 
-### 2. Install Dependensi
+### 2. Install Dependencies
 
 ```bash
 composer install
 npm install && npm run dev
 ```
 
-### 3. Konfigurasi Environment
+### 3. Configure Environment
 
-Copy file `.env.example` menjadi `.env`, lalu sesuaikan konfigurasi database dan lainnya:
+Copy the `.env.example` file to `.env` and configure your database and app settings:
 
 ```bash
 cp .env.example .env
 php artisan key:generate
 ```
 
-### 4. Setup Database
+### 4. Set Up the Database
 
 ```bash
 php artisan migrate --seed
 ```
 
-### 5. Jalankan Server
+### 5. Run the Laravel Development Server
 
 ```bash
 php artisan serve
@@ -63,17 +63,17 @@ php artisan serve
 
 ---
 
-## 🧠 Alur Sistem
+## 🧠 System Workflow
 
-1. RFID Reader (ESP8266) membaca kartu.
-2. ESP mengirim UID kartu ke server Laravel (API endpoint).
-3. Server mencocokkan UID dengan database.
-4. Jika cocok, server mencatat absensi, dan merespons nama + foto.
-5. ESP menampilkan info di LCD atau layar.
+1. RFID Reader (ESP8266) reads a card.
+2. ESP sends the UID to Laravel backend via HTTP POST.
+3. Server checks UID in the database.
+4. If found, it logs attendance and returns user details (name, photo).
+5. ESP displays the result on LCD or screen.
 
 ---
 
-## 🖥️ Struktur Proyek
+## 📁 Project Structure
 
 ```bash
 app/
@@ -93,53 +93,54 @@ database/
 ├── migrations/
 ├── seeders/
 public/
-├── images/ (foto pengguna)
+├── images/ (user photos)
 .env
 ```
 
 ---
 
-## 🔐 Role Akses
+## 🔐 User Roles
 
-* **Admin**: Mengelola data pengguna, absensi, dan pengaturan sistem.
-* **Umum**: Melihat data absensinya sendiri (jika fitur login user diaktifkan).
-
----
-
-## 📡 API Endpoint
-
-| Method | Endpoint          | Deskripsi                               |
-| ------ | ----------------- | --------------------------------------- |
-| POST   | `/api/absen`      | Menerima data dari RFID (UID)           |
-| GET    | `/api/user/{uid}` | Mengambil data pengguna berdasarkan UID |
+* **Admin**: Manages users, attendance records, and system settings.
+* **General User**: Can view personal attendance info (optional login feature).
 
 ---
 
-## 🛠️ Teknologi
+## 📡 API Endpoints
+
+| Method | Endpoint          | Description                        |
+| ------ | ----------------- | ---------------------------------- |
+| POST   | `/api/absen`      | Receive UID data from RFID scanner |
+| GET    | `/api/user/{uid}` | Get user info based on RFID UID    |
+
+---
+
+## 🛠️ Tech Stack
 
 * Laravel 10.x
 * MySQL / MariaDB
-* Blade Template
-* Tailwind CSS (opsional)
+* Blade Templates
+* (Optional) Tailwind CSS
 * ESP8266 (NodeMCU)
-* RFID RC522 Reader
+* RC522 RFID Reader
 
 ---
 
-## 📄 Lisensi
+## 📄 License
 
-Proyek ini dilisensikan di bawah MIT License. Silakan gunakan dan modifikasi sesuai kebutuhan.
-
----
-
-## 🤝 Kontribusi
-
-Pull request sangat dipersilakan! Untuk perubahan besar, buka dulu issue untuk didiskusikan.
+This project is open-source under the MIT License. Feel free to use and modify it as needed.
 
 ---
 
-## 🧑‍💻 Author
+## 🤝 Contributing
 
-[Yodha Ardiansyah](https://github.com/Yodhaardiansyah)
+Pull requests are welcome. For major changes, please open an issue first to discuss what you’d like to change.
+
+---
+
+## 👨‍💻 Author
+
+**Yodha Ardiansyah**
+[GitHub Profile](https://github.com/Yodhaardiansyah)
 
 
