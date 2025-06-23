@@ -7,6 +7,7 @@ use App\Models\Attendance;
 use App\Models\PrayerTime; 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
 use App\Exports\SantriExport;
@@ -22,9 +23,27 @@ class AdminController extends Controller
     // 🏠 Menampilkan Dashboard Admin
     public function dashboard()
     {
+        $totalSantri = Santri::count();
+
+        $totalHadir = Attendance::whereDate('time', now()->toDateString())->count();
+
+        $now = \Carbon\Carbon::now();
+
+        $latestPrayerRecord = PrayerTime::whereTime('time', '<=', $now->format('H:i:s'))
+            ->orderBy('time', 'desc')
+            ->first();
+
+        if (!$latestPrayerRecord) {
+            // If no prayer time found before now, get the last prayer of the day (fallback)
+            $latestPrayerRecord = PrayerTime::orderBy('time', 'desc')->first();
+        }
+
+        $latestPrayer = $latestPrayerRecord ? ucfirst($latestPrayerRecord->name) . ' (' . \Carbon\Carbon::parse($latestPrayerRecord->time)->format('H:i') . ')' : '--';
+
         $santris = Santri::with('attendances')->get();
         $prayerTimes = PrayerTime::all(); // Ambil data waktu sholat
-        return view('admin.dashboard', compact('prayerTimes', 'santris'));
+
+        return view('admin.dashboard', compact('prayerTimes', 'santris', 'totalSantri', 'totalHadir', 'latestPrayer'));
     }
 
     // 📌 Menampilkan Detail Santri

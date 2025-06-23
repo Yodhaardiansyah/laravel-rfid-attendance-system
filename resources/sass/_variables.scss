@@ -1,7 +1,17 @@
 // Body
-$body-bg: #f8fafc;
+$body-bg: #f0f2f5;
 
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
+$font-family-sans-serif: 'Inter', sans-serif;
+$font-size-base: 1rem;
+$line-height-base: 1.5;
+
+// Colors
+$primary: #4f46e5; // Indigo-600
+$secondary: #6b7280; // Gray-500
+$success: #10b981; // Emerald-500
+$info: #3b82f6; // Blue-500
+$warning: #f59e0b; // Amber-500
+$danger: #ef4444; // Red-500
+$light: #f9fafb; // Gray-50
+$dark: #111827; // Gray-900

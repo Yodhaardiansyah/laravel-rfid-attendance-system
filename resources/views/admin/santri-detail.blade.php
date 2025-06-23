@@ -4,9 +4,9 @@
 <div class="container">
     <h2 class="mb-4">Detail Santri</h2>
 
-    <div class="card shadow-sm mb-4">
+    <div class="card shadow-sm mb-4 glass-card">
         <div class="card-body">
-            <table class="table table-bordered">
+            <table class="table table-transparent table-borderless table-bordered glass-card">
                 <tr>
                     <th>Nama</th>
                     <td>{{ $santri->name }}</td>
@@ -36,7 +36,7 @@
     <!-- Riwayat Absensi -->
     <h3 class="mb-3">Riwayat Absensi</h3>
 
-    <div class="card shadow-sm mb-3">
+    <div class="card shadow-sm mb-3 glass-card">
         <div class="card-body d-flex gap-4">
             <div>
                 <h5 class="mb-1">Total Terlambat</h5>
@@ -50,18 +50,16 @@
     </div>
 
     <!-- Filter -->
-    <div class="card shadow-sm mb-3">
+    <div class="card shadow-sm mb-3 glass-card">
         <div class="card-body">
             <label for="filterType" class="form-label">Filter Tipe:</label>
-            <select id="filterType" class="form-select" onchange="updateFilterInput()">
+            <select id="filterType" class="form-select glass-card" onchange="updateFilterInput()">
                 <option value="bulan" {{ request('filter_type') == 'bulan' ? 'selected' : '' }}>Bulan</option>
                 <option value="minggu" {{ request('filter_type') == 'minggu' ? 'selected' : '' }}>Minggu</option>
                 <option value="hari" {{ request('filter_type') == 'hari' ? 'selected' : '' }}>Hari</option>
             </select>
 
-            <div id="filterInputContainer" class="mt-3">
-                <!-- Filter input will be inserted here by JS -->
-            </div>
+            <div id="filterInputContainer" class="mt-3"></div>
 
             <button class="btn btn-primary mt-3" onclick="filterAttendance()">
                 <i class="fas fa-filter"></i> Filter
@@ -79,9 +77,9 @@
         </a>
     </div>
 
-    <div class="card shadow-sm">
+    <div class="card shadow-sm glass-card">
         <div class="card-body">
-            <table class="table table-striped table-hover">
+            <table class="table table-transparent table-borderless table-striped table-hover glass-card">
                 <thead class="table-dark">
                     <tr>
                         <th>Waktu</th>
@@ -112,23 +110,19 @@
                     @endforeach
                 </tbody>
             </table>
+
             <!-- Pagination -->
-        <div class="d-flex justify-content-center">
-            <nav aria-label="Page navigation">
-                <ul class="pagination pagination-sm my-2">
-                    {!! $attendances->appends(request()->only(['filter_type', 'filter_value']))->links('pagination::bootstrap-4') !!}
-
-                </ul>
-            </nav>
+            <div class="d-flex justify-content-center">
+                {!! $attendances->appends(request()->only(['filter_type', 'filter_value']))->links('pagination::bootstrap-4') !!}
+            </div>
         </div>
-
     </div>
 </div>
 
 <!-- Modal Tambah Absensi Manual -->
 <div class="modal fade" id="addAttendanceModal" tabindex="-1" aria-labelledby="addAttendanceLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content glass-card">
             <div class="modal-header">
                 <h5 class="modal-title" id="addAttendanceLabel">Tambah Absensi Manual</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -145,7 +139,7 @@
 
                     <div class="mb-3">
                         <label for="prayer_name" class="form-label">Nama Sholat:</label>
-                        <select class="form-control" id="prayer_name" name="prayer_name" required>
+                        <select class="form-select glass-card" id="prayer_name" name="prayer_name" required>
                             <option value="subuh">Subuh</option>
                             <option value="dzuhur">Dzuhur</option>
                             <option value="ashar">Ashar</option>
@@ -156,7 +150,7 @@
 
                     <div class="mb-3">
                         <label for="status" class="form-label">Status:</label>
-                        <select class="form-control" id="status" name="status" required>
+                        <select class="form-select glass-card" id="status" name="status" required>
                             <option value="Tepat Waktu">Tepat Waktu</option>
                             <option value="Terlambat">Terlambat</option>
                             <option value="Belum Waktunya">Belum Waktunya</option>
@@ -174,6 +168,7 @@
     </div>
 </div>
 
+<!-- Script -->
 <script>
     function confirmDelete(attendanceId) {
         if (confirm("Apakah Anda yakin ingin menghapus absensi ini?")) {
@@ -196,7 +191,7 @@
                 <label for="filterWeek" class="form-label">Pilih Minggu (Tahun-Minggu):</label>
                 <input type="week" id="filterWeek" class="form-control" value="{{ request('filter_value') ?? '' }}">
             `;
-        } else { // bulan
+        } else {
             let monthOptions = '<option value="">Semua Bulan</option>';
             for (let i = 1; i <= 12; i++) {
                 const selected = "{{ request('filter_value') }}" == i ? 'selected' : '';
@@ -205,7 +200,7 @@
             }
             container.innerHTML = `
                 <label for="filterMonth" class="form-label">Pilih Bulan:</label>
-                <select id="filterMonth" class="form-select">${monthOptions}</select>
+                <select id="filterMonth" class="form-select glass-card">${monthOptions}</select>
             `;
         }
     }
@@ -224,13 +219,20 @@
         const url = new URL(window.location.href);
         url.searchParams.set('filter_type', filterType);
         url.searchParams.set('filter_value', filterValue);
-        url.searchParams.delete('page'); // Reset pagination on filter change
+        url.searchParams.delete('page');
         window.location.href = url.toString();
     }
 
     document.addEventListener('DOMContentLoaded', function () {
         updateFilterInput();
+
+        // Auto set time now
+        const timeInput = document.getElementById('time');
+        if (timeInput) {
+            const now = new Date();
+            const local = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+            timeInput.value = local;
+        }
     });
 </script>
-
 @endsection
