@@ -19,8 +19,11 @@ A modern **RFID-based attendance system** built with **Laravel**. This project i
 
 ## 📸 Interface Preview
 
-> ![WhatsApp Image 2025-06-21 at 23 13 05_6ba0381a](https://github.com/user-attachments/assets/aea99f18-16e1-48b8-9b5b-9cdf855240fc)
-> ![WhatsApp Image 2025-06-21 at 23 14 08_939614e0](https://github.com/user-attachments/assets/1f091d28-b3e4-437b-bd97-aed9197ceceb)
+> ![WhatsApp Image 2025-06-26 at 06 21 11_74c44571](https://github.com/user-attachments/assets/8de5e347-40c5-4cbd-a11c-84981a5ef210)
+> ![WhatsApp Image 2025-06-26 at 06 22 05_1add4c74](https://github.com/user-attachments/assets/d850bd02-8262-4a79-a2c1-0a3d003d4b4a)
+> ![WhatsApp Image 2025-06-26 at 06 22 24_dae97469](https://github.com/user-attachments/assets/386ed0a6-41df-4261-a7b1-640b39790a44)
+> ![WhatsApp Image 2025-06-26 at 06 24 08_1d8e698c](https://github.com/user-attachments/assets/ecd45406-268e-4abd-91fe-14b7f4a620f3)
+
 
 
 
